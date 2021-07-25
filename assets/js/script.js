@@ -1,15 +1,19 @@
 // date
 let date = moment().format("dddd, MMMM Do");
 let compareTime = moment().hours();
-console.log(compareTime);
+
 $("#currentDay").append(date);
 
 //adding colors to rows based on time
 $.each($("textarea"), function () {
 
 
-    let time = parseInt($(".hour").text())
-    console.log(time)
+    let timeForm = ($(this).siblings()[0].innerText)
+
+
+    let time = parseInt(timeForm);
+
+
 
 
     if (compareTime > time) {
@@ -29,6 +33,24 @@ $.each($("textarea"), function () {
 });
 
 //save info
+$(".saveBtn").on("click", function () {
 
+    let saveTimeFull = ($(this).siblings()[0].innerText);
 
+    let saveTime = parseInt(saveTimeFull);
 
+    let saveData = ($(this).siblings()[1].value).trim();
+
+    localStorage.setItem(saveTime, JSON.stringify(saveData));
+
+})
+
+//get info
+
+$.each($("textarea"), function () {
+
+    let timeKey = parseInt(($(this).siblings()[0].innerText))
+
+    $(".description").value = (localStorage.getItem(timeKey));
+
+});
