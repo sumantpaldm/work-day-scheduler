@@ -51,6 +51,12 @@ $.each($("textarea"), function () {
 
     let timeKey = parseInt(($(this).siblings()[0].innerText))
 
-    $(".description").value = (localStorage.getItem(timeKey));
+
+    let ans = JSON.parse(localStorage.getItem(timeKey))
+    console.log(ans)
+    console.dir($(".description"))
+
+    $(this).val(ans)
+
 
 });
